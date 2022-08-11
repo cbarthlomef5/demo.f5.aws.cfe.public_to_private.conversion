@@ -1,0 +1,255 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowServicesInRegions",
+            "Effect": "Allow",
+            "Action": [
+                "acm:*",
+                "autoscaling:*",
+                "cloudformation:*",
+                "cloudtrail:*",
+                "cloudwatch:*",
+                "logs:*",
+                "ecr:*",
+                "ecs:*",
+                "ec2:*",
+                "eks:*",
+                "elasticloadbalancing:*",
+                "lambda:*",
+                "secretsmanager:*",
+                "sqs:*"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:RequestedRegion": [
+                        "ap-northeast-1",
+                        "ap-northeast-2",
+                        "ap-south-1",
+                        "ap-southeast-1",
+                        "ap-southeast-2",
+                        "ca-central-1",
+                        "eu-central-1",
+                        "eu-west-1",
+                        "eu-west-2",
+                        "eu-west-3",
+                        "sa-east-1",
+                        "us-east-1",
+                        "us-east-2",
+                        "us-west-1",
+                        "us-west-2"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "LimitEC2InstanceTypes",
+            "Effect": "Deny",
+            "Action": [
+                "autoscaling:*",
+                "ec2:*"
+            ],
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "ForAnyValue:StringNotLike": {
+                    "ec2:InstanceType": [
+                        "t1.micro",
+                        "t2.nano",
+                        "t2.micro",
+                        "t2.small",
+                        "t2.medium",
+                        "t2.large",
+                        "t2.xlarge",
+                        "t2.2xlarge",
+                        "t3.nano",
+                        "t3.micro",
+                        "t3.small",
+                        "t3.medium",
+                        "t3.large",
+                        "t3.xlarge",
+                        "t3.2xlarge",
+                        "m4.large",
+                        "m4.xlarge",
+                        "m5.large",
+                        "m5.xlarge",
+                        "m5.2xlarge",
+                        "m5.4xlarge",
+                        "c4.large",
+                        "c4.xlarge",
+                        "c4.2xlarge",
+                        "c5.large",
+                        "c5.xlarge"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "LimitEc2Operations",
+            "Effect": "Deny",
+            "Action": [
+                "ec2:AcceptReservedInstancesExchangeQuote",
+                "ec2:AllocateHosts",
+                "ec2:CopyFpgaImage",
+                "ec2:CreateFleet",
+                "ec2:CreateFpgaImage",
+                "ec2:CreateReservedInstancesListing",
+                "ec2:CreateSpotDatafeedSubscription",
+                "ec2:GetHostReservationPurchasePreview",
+                "ec2:GetReservedInstancesExchangeQuote",
+                "ec2:ModifyHosts",
+                "ec2:ModifyInstancePlacement",
+                "ec2:ModifyReservedInstances",
+                "ec2:ModifySpotFleetRequest",
+                "ec2:ModifyVpcTenancy",
+                "ec2:PurchaseHostReservation",
+                "ec2:PurchaseReservedInstancesOffering",
+                "ec2:PurchaseScheduledInstances",
+                "ec2:RequestSpotFleet",
+                "ec2:RequestSpotInstances",
+                "ec2:RunScheduledInstances"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "KMSAccess",
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:Encrypt",
+                "kms:Decrypt",
+                "kms:Describe*",
+                "kms:GenerateDataKey*",
+                "kms:Get*",
+                "kms:List*",
+                "kms:ReEncrypt*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "Route53Access",
+            "Effect": "Allow",
+            "Action": [
+                "route53:AssociateVPCWithHostedZone",
+                "route53:DisassociateVPCFromHostedZone",
+                "route53:ChangeResourceRecordSets",
+                "route53:ChangeTagsForResource",
+                "route53:CreateHostedZone",
+                "route53:DeleteHostedZone",
+                "route53:UpdateHostedZoneComment",
+                "route53:Get*",
+                "route53:List*",
+                "ec2:DescribeVpcs"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "ReadAccess",
+            "Effect": "Allow",
+            "Action": [
+                "aws-marketplace:ViewSubscriptions",
+                "aws-marketplace:Subscribe",
+                "cloudwatch:Describe*",
+                "cloudwatch:Get*",
+                "cloudwatch:List*",
+                "iam:Get*",
+                "iam:List*",
+                "sts:Get*",
+                "sns:Get*",
+                "sns:List*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowIAM",
+            "Effect": "Allow",
+            "Action": [
+                "iam:*Policy*",
+                "iam:*Profile*",
+                "iam:*Role*"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringNotLike": {
+                    "iam:RoleName": [
+                        "AWSServiceRoleForOrganizations",
+                        "AWSServiceRoleForSupport",
+                        "AWSServiceRoleForTrustedAdvisor",
+                        "OrganizationAccountAccessRole",
+                        "udf"
+                    ]
+                },
+                "ArnNotLike": {
+                    "iam:PolicyArn": [
+                        "arn:aws:iam::462004937160:policy/UDFUserPolicy",
+                        "arn:aws:iam::aws:policy/AdministratorAccess",
+                        "arn:aws:iam::aws:policy/IAMFullAccess"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "AllowInstanceRole",
+            "Effect": "Allow",
+            "Action": [
+                "iam:AddRoleToInstanceProfile",
+                "iam:RemoveRoleFromInstanceProfile",
+                "iam:CreateInstanceProfile",
+                "iam:DeleteInstanceProfile",
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::462004937160:instance-profile/*",
+                "arn:aws:iam::462004937160:role/udf"
+            ]
+        },
+        {
+            "Sid": "AllowELBServiceLinkedRole",
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::462004937160:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "AllowAttachELBServiceLinkedRolePolicy",
+            "Effect": "Allow",
+            "Action": [
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy"
+            ],
+            "Resource": "arn:aws:iam::462004937160:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing"
+        },
+        {
+            "Sid": "DescribeRDSInstances",
+            "Effect": "Allow",
+            "Action": "rds:DescribeDBInstances",
+            "Resource": "*"
+        },
+        {
+            "Sid": "DescribeRedshiftClusters",
+            "Effect": "Allow",
+            "Action": "redshift:DescribeClusters",
+            "Resource": "*"
+        },
+        {
+            "Sid": "DescribeDocumentDBClusters",
+            "Effect": "Allow",
+            "Action": "rds:DescribeDBClusters",
+            "Resource": "*"
+        },
+        {
+            "Sid": "AllowGlobalServices",
+            "Effect": "Allow",
+            "Action": [
+                "iam:*",
+                "route53:*",
+                "s3:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
