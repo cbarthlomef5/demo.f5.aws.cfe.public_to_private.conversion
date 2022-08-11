@@ -14,16 +14,16 @@ module "security_settings_setup" {
   bigip_pw_secret_pw = var.bigip_pw_secret_pw
 }
 
-module "bastionHosts_deploy" {
-  source = "./tfmodules/bastionHosts"
+module "bastion_hosts_deploy" {
+  source = "./tfmodules/bastion_hosts"
 
   aws_key_pair_name = var.aws_key_pair_name
   aws_key_pair_file_priv = var.aws_key_pair_file_priv
   bastion_host_sub_cidr = module.aws_infrastructure_setup.bastion_vpc_subnet_id
 }
 
-module "cft_deploy" {
-  source = "./tfmodules/bigip_cftDeploy"
+module "bigip_cft_deploy" {
+  source = "./tfmodules/bigip_cft_deploy"
 
   aws_key_pair_name = var.aws_key_pair_name
   bigip_pw_arn = module.security_settings_setup.bigip_pw_arn
@@ -36,4 +36,12 @@ module "cft_deploy" {
   security_vpc_external_b_sub_id = module.aws_infrastructure_setup.security_vpc_external_b_sub_id
   security_vpc_internal_a_sub_id = module.aws_infrastructure_setup.security_vpc_internal_a_sub_id
   security_vpc_internal_b_sub_id = module.aws_infrastructure_setup.security_vpc_internal_b_sub_id
+}
+
+module "demo_application_deploy" {
+  source = "./tfmodules/demo_application"
+
+  depends_on = [
+    module.bigip_cft_deploy
+  ]
 }
