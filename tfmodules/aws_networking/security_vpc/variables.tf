@@ -28,3 +28,7 @@ variable "my_current_ip" {
 variable "demo_env_tgw_id" {
   type = string
 }
+
+variable "cfe_failover_tag" {
+  type = string
+}

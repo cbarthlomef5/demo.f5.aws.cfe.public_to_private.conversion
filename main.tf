@@ -1,5 +1,7 @@
 module "aws_infrastructure_setup" {
   source = "./tfmodules/aws_networking"
+
+  cfe_failover_tag = var.cfe_failover_tag
 }
 
 module "security_settings_setup" {
@@ -26,6 +28,7 @@ module "bigip_cft_deploy" {
   aws_key_pair_name = var.aws_key_pair_name
   bigip_pw_arn = module.security_settings_setup.bigip_pw_arn
   security_vpc_id = module.aws_infrastructure_setup.security_vpc_id
+  cfe_failover_tag = var.cfe_failover_tag
   # subnet information
   security_vpc_cidr = module.aws_infrastructure_setup.security_vpc_cidr
   security_vpc_mgmt_a_sub_id = module.aws_infrastructure_setup.security_vpc_mgmt_a_sub_id

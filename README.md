@@ -3,7 +3,8 @@
 Steps to perform demo converting Cloud Failover Extention (CFE) deployed via CloudFormation Template (CFT) from Public facing to Private facing
 
 # Resources
-* CFE: https://clouddocs.f5.com/products/extensions/f5-cloud-failover/latest/userguide/overview.html
+* CFE Overview: https://clouddocs.f5.com/products/extensions/f5-cloud-failover/latest/
+* CFE Quickstart Guide: https://clouddocs.f5.com/products/extensions/f5-cloud-failover/latest/userguide/quickstart.html#quickstart
 * CFT: https://github.com/F5Networks/f5-aws-cloudformation-v2/tree/main/examples/failover 
 * UDF Template: https://udf.f5.com/b/6c47bd30-b7c0-47ce-a8c9-db8d3dfa0f73#documentation
 
@@ -13,6 +14,7 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
     * Terraform
         * Install terraform: https://learn.hashicorp.com/tutorials/terraform/install-cli
 2. AWS Enviornment for Demo
+    * <b> DEMO BUILDS NEW ENVIRONMENT! ADVISED TO USE CLEAN AWS ENVIRONMENT TO AVOID RESOURCE CONFLICTS! </b>
 3. AWS API access keys and permissions to deploy objects into environment
 
 
@@ -40,6 +42,34 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
 8. Once deployment is complete, log into Windows Bastion host and validate connectivity to BigIPs
     * All IP addresses can be found from AWS console
 
+
 # Demo Steps
 1. Show application availability via public IP
+    * IP can be obtained from CFT outputs or from Elastic IP Addressess console in AWS
+        * Elastic IP name: f5demo-bigip-external-eip-03
 2. Show failover between appliances
+3. Use Postman on Windows Bastion host to view current CFE information
+    * Disable SSL verification within Postman Settings
+    * Postman URLs can be found in postmanCommands.txt
+    * Use Basic Authentication
+        * User: admin
+        * PW: Obtain from globalVariables.tf file
+4. Create VIP within Alien range
+5. Check for HA tag on necessary resources
+    * Failover Tag Information
+        * Tag Key: f5_cloud_failover_label
+        * Tag Value: bigip_high_availability_solution
+    * Resources to tag
+        * Network Interfaces
+            * f5demo-bigip-static-external-int-01
+            * f5demo-bigip-static-external-int-02
+        * Route Tables
+            * security_vpc-internal_subnet-rt
+6. Change source/dest.check to Disabled on Network Interfaces
+    * Network Interfaces
+            * f5demo-bigip-static-external-int-01
+            * f5demo-bigip-static-external-int-02
+7. Update route table to add alien IP range
+    * Route Table Name: security_vpc-internal_subnet-rt
+    * IP Subnet to add: 192.168.50.0/23
+    * Destination: interface ID for f5demo-bigip-static-external-int-02

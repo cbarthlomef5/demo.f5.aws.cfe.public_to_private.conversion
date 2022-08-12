@@ -1,0 +1,8 @@
+# View Cloud Failover Extension Info
+GET https://10.10.1.11/mgmt/shared/cloud-failover/info
+
+# View Cloud Failover Extension curent declaration
+GET https://10.10.1.11/mgmt/shared/cloud-failover/declare
+
+# Update Cloud Failover Extension declaration
+POST https://10.10.1.11/mgmt/shared/cloud-failover/declare

@@ -17,3 +17,7 @@ variable "bigip_pw_secret_id" {
 variable "bigip_pw_secret_pw" {
   default = "admin.F5demo.com"
 }
+
+variable "cfe_failover_tag" {
+  default = "bigip_high_availability_solution"
+}

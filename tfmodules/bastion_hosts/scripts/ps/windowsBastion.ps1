@@ -7,7 +7,6 @@ Add-LocalGroupMember -Group "Administrators" -Member $username
 
 # Create temp directory
 New-Item -Path 'C:\temp' -ItemType Directory
-New-Item -Path 'C:\temp\code' -ItemType Directory
 
 # Copy certificate to temp directory
 New-Item -Path 'C:\temp\id_rsa' -ItemType File -Value "${certificate}" -Force
