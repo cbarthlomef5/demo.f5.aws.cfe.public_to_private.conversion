@@ -9,7 +9,7 @@ module "security_settings_setup" {
 
   aws_key_pair_name = var.aws_key_pair_name
   aws_key_pair_file_pub = var.aws_key_pair_file_pub
-  windows_host_tag = module.bastionHosts_deploy.windows_host_tag
+  windows_host_tag = module.bastion_hosts_deploy.windows_host_tag
   bigip_pw_secret_id = var.bigip_pw_secret_id
   bigip_pw_secret_pw = var.bigip_pw_secret_pw
 }
@@ -40,6 +40,10 @@ module "bigip_cft_deploy" {
 
 module "demo_application_deploy" {
   source = "./tfmodules/demo_application"
+
+  aws_key_pair_name = var.aws_key_pair_name
+  aws_key_pair_file_priv = var.aws_key_pair_file_priv
+  sub_id = module.aws_infrastructure_setup.security_vpc_internal_b_sub_id
 
   depends_on = [
     module.bigip_cft_deploy

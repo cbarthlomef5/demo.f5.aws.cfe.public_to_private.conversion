@@ -14,7 +14,7 @@ data "http" "f5-cftv2-failover-existing-network" {
 resource "aws_cloudformation_stack" "bigip_ha_across_az" {
   name         = "networking-stack"
   capabilities = ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"]
-  disable_rollback = "true"
+  disable_rollback = "false"
   parameters = {
     uniqueString             = "f5demo"
     vpcId                    = var.security_vpc_id
