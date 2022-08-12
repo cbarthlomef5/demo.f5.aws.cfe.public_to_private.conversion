@@ -30,10 +30,10 @@ if [ -d $FILEPATH ]
 then # if yes remove and re-create
     rm -rf $FILEPATH
     mkdir $FILEPATH
-    #git clone git@github.com:cbarthlomef5/demo.f5.application.git code
+    git clone git@github.com:cbarthlomef5/demo.f5.application.git code
 else # if no create
     mkdir $FILEPATH
-    #git clone git@github.com:cbarthlomef5/demo.f5.application.git code
+    git clone git@github.com:cbarthlomef5/demo.f5.application.git code
 fi
 # Change directory
 cd $FILEPATH
