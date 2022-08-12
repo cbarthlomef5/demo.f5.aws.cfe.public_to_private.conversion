@@ -29,6 +29,7 @@ module "security_vpc_setup" {
   workstations_vpc_cidr = var.workstations_vpc_cidr
   my_current_ip = local.my_current_ip
   demo_env_tgw_id = module.tgw_setup.demo_env_tgw_id
+  cfe_failover_tag = var.cfe_failover_tag
 }
 
 module "workstations_vpc_setup" {

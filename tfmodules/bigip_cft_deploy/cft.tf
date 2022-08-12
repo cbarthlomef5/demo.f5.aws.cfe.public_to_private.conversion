@@ -41,7 +41,7 @@ resource "aws_cloudformation_stack" "bigip_ha_across_az" {
     provisionPublicIpVip     = "true"
     secretArn                = var.bigip_pw_arn
     sshKey                   = var.aws_key_pair_name
-    cfeTag                   = "bigip_high_availability_solution"
+    cfeTag                   = var.cfe_failover_tag
     cfeS3Bucket              = "f5demo-${random_string.unique_id.id}-bigip-high-availability-solution"
   }
 

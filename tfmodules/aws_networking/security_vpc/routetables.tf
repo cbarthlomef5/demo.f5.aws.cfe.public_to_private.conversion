@@ -31,6 +31,7 @@ resource "aws_route_table" "internal_subnets_rt" {
 
   tags = {
     Name = "${var.vpc_name_tag}_vpc-internal_subnet-rt"
+    f5_cloud_failover_label = var.cfe_failover_tag
   }
 }
 

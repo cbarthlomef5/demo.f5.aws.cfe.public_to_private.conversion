@@ -11,6 +11,11 @@ resource "aws_default_route_table" "bastion_host_vpc_default_rt" {
     transit_gateway_id = var.demo_env_tgw_id
   }
 
+  route {
+    cidr_block = "192.168.50.0/24"
+    transit_gateway_id = var.demo_env_tgw_id
+  }
+
   tags = {
     Name = "${var.vpc_name_tag}_vpc-default-rt"
   }

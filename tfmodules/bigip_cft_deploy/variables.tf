@@ -36,3 +36,7 @@ variable "security_vpc_id" {
 variable "security_vpc_cidr" {
   type = string
 }
+
+variable "cfe_failover_tag" {
+  type = string
+}
