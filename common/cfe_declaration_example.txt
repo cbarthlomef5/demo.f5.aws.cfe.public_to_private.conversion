@@ -21,7 +21,7 @@
     "enabled": true,
     "routeGroupDefinitions":[
         {
-            "scopingName": "rtb-02bb12c1fbf18924b",
+            "scopingName": "",
             "scopingAddressRanges": [
                 {
                     "range": "192.168.50.0/24"
