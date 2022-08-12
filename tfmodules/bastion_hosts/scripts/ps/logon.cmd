@@ -18,7 +18,7 @@ if exist %homedrive%%homepath%\.aws\ (
 
 choco install postman
 
-mkdir %homedrive%%homepath%\Documents\Dode
+mkdir %homedrive%%homepath%\Documents\Code
 cd %homedrive%%homepath%\Documents\Code
 
 git clone https://github.com/cbarthlomef5/demo.f5.aws.cfe.public_to_private.conversion.git
