@@ -1,4 +1,4 @@
-# aws.cfe.public.to.private.demo
+# demo.f5.cfe.public_to_private.conversion
 
 Steps to perform demo converting Cloud Failover Extention (CFE) deployed via CloudFormation Template (CFT) from Public facing to Private facing
 
@@ -10,11 +10,10 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
 
 # Demo Requirements
 1. Must have the following applications installed to utilize automation
-    * Python
     * Terraform
         * Install terraform: https://learn.hashicorp.com/tutorials/terraform/install-cli
 2. AWS Enviornment for Demo
-
+3. AWS API access keys and permissions to deploy objects into environment
 
 
 # Demo Steps
