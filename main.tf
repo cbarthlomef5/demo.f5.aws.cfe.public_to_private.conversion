@@ -1,7 +1,5 @@
 module "aws_infrastructure_setup" {
   source = "./tfmodules/aws_networking"
-
-  home_ip_secret_value = var.home_ip_secret_value
 }
 
 module "security_settings_setup" {

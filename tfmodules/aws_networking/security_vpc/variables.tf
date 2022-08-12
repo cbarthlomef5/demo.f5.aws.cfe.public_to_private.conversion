@@ -21,7 +21,7 @@ variable "workstations_vpc_cidr" {
   type = string
 }
 
-variable "home_ip_secret_value" {
+variable "my_current_ip" {
   type = string
 }
 

@@ -49,7 +49,7 @@ resource "aws_default_security_group" "servers_vpc_default_sg" {
     from_port = 0
     to_port = 0
     protocol = "-1"
-    cidr_blocks = ["${var.home_ip_secret_value}/32"]
+    cidr_blocks = ["${var.my_current_ip}/32"]
   }
 
   egress {
