@@ -43,7 +43,7 @@ resource "aws_route_table_association" "management_b_sub_rt_assoc" {
   subnet_id = aws_subnet.management_b.id
   route_table_id = aws_route_table.internal_subnets_rt.id
 }
-
+/*
 resource "aws_route_table_association" "external_a_sub_rt_assoc" {
   subnet_id = aws_subnet.external_a.id
   route_table_id = aws_route_table.internal_subnets_rt.id
@@ -53,7 +53,7 @@ resource "aws_route_table_association" "external_b_sub_rt_assoc" {
   subnet_id = aws_subnet.external_b.id
   route_table_id = aws_route_table.internal_subnets_rt.id
 }
-
+*/
 resource "aws_route_table_association" "internal_a_sub_rt_assoc" {
   subnet_id = aws_subnet.internal_a.id
   route_table_id = aws_route_table.internal_subnets_rt.id
