@@ -64,12 +64,23 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
             * f5demo-bigip-static-external-int-01
             * f5demo-bigip-static-external-int-02
         * Route Tables
-            * security_vpc-internal_subnet-rt
+            * security_vpc-default-rt
 6. Change source/dest.check to Disabled on Network Interfaces
     * Network Interfaces
             * f5demo-bigip-static-external-int-01
             * f5demo-bigip-static-external-int-02
 7. Update route table to add alien IP range
+    * Route Table Name: security_vpc-default-rt
+    * IP Subnet to add: 192.168.50.0/24
+    * Destination: interface ID for f5demo-bigip-static-external-int-"activedevice"
+8. Deploy new CFE declaration to BigIP
+    * Use cfe_declaration_example.txt file
+    * <b>REPLACE scopingName WITH CORRECT ROUTE TABLE ID!</b>
+    * defaultNextHopAddresses items should be IP address of interfaces used in failover
+    * Deploy via Postman to BigIP
+9. Failover between appliances
+    * Route table entry should update to new ENI after a few seconds
+10. Re-test applications
+11. Remove all public EIPs from BigIP applainces
+12. Associate BigIP subnets with internal Private route table
     * Route Table Name: security_vpc-internal_subnet-rt
-    * IP Subnet to add: 192.168.50.0/23
-    * Destination: interface ID for f5demo-bigip-static-external-int-02

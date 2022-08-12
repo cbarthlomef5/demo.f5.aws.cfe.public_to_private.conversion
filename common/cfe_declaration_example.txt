@@ -24,7 +24,7 @@
             "scopingName": "rtb-02bb12c1fbf18924b",
             "scopingAddressRanges": [
                 {
-                    "range": "192.168.0.0/16"
+                    "range": "192.168.50.0/24"
                 }
             ],
             "defaultNextHopAddresses": {
