@@ -2,6 +2,11 @@
 
 Steps to perform demo converting Cloud Failover Extention (CFE) deployed via CloudFormation Template (CFT) from Public facing to Private facing
 
+# Use Case
+* Remove public access into BigIP HA pair deployed via Cloud Formation Template
+* Concept is based on document from Michael O'Leary
+    * https://community.f5.com/t5/technical-articles/deploy-big-ip-in-aws-with-ha-across-az-s-without-using-eip-s/ta-p/291221
+
 # Resources
 * CFE Overview: https://clouddocs.f5.com/products/extensions/f5-cloud-failover/latest/
 * CFE Quickstart Guide: https://clouddocs.f5.com/products/extensions/f5-cloud-failover/latest/userguide/quickstart.html#quickstart
