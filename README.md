@@ -16,7 +16,7 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
 3. AWS API access keys and permissions to deploy objects into environment
 
 
-# Demo Steps
+# Demo Setup
 1. Start UDF instance from UDF template
 2. Connect to UDF AWS Environment and subscribe to F5 product used in demo
     1. Use credentials provided from UDF deployment
@@ -36,8 +36,10 @@ Steps to perform demo converting Cloud Failover Extention (CFE) deployed via Clo
 5. Open preferred terminal and navigate to main directory of code
 6. Run "main.sh" from root directory
 7. Wait for deployment to complete
-    * Deployment will deploy the following items to be used for the demo
-        * AWS Environment
-        * Windows Server Bastion Host
-            * Server public IP can be obtained from AWS console
-        
+    * Full deployment is ~15-20 minutes
+8. Once deployment is complete, log into Windows Bastion host and validate connectivity to BigIPs
+    * All IP addresses can be found from AWS console
+
+# Demo Steps
+1. Show application availability via public IP
+2. Show failover between appliances
