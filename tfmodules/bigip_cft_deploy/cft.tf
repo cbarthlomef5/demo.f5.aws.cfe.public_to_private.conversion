@@ -39,7 +39,7 @@ resource "aws_cloudformation_stack" "bigip_ha_across_az" {
     restrictedSrcAddressApp  = "0.0.0.0/0"
     provisionPublicIpMgmt    = "false"
     provisionPublicIpVip     = "true"
-    secretArn                = var.bigip_pw_arn
+    bigIpSecretArn           = var.bigip_pw_arn
     sshKey                   = var.aws_key_pair_name
     cfeTag                   = var.cfe_failover_tag
     cfeS3Bucket              = "f5demo-${random_string.unique_id.id}-bigip-high-availability-solution"
