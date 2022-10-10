@@ -13,6 +13,7 @@ resource "aws_default_route_table" "security_vpc_default_rt" {
 
   tags = {
     Name = "${var.vpc_name_tag}_vpc-default-rt"
+    f5_cloud_failover_label = var.cfe_failover_tag
   }
 }
 
