@@ -11,11 +11,10 @@
     }
  },
   "failoverAddresses": {
-    "enabled": false,
+    "enabled": true,
     "scopingTags": {
       "f5_cloud_failover_label": "bigip_high_availability_solution"
-    },
-    "requireScopingTags": false
+    }
   },
   "failoverRoutes": {
     "enabled": true,
