@@ -1,6 +1,6 @@
 # Local variables
 variable "windows_bastion_ami" {
-  default = "ami-01f14dc60171d8d7b"
+  default = "ami-0da2fef774e308b99"
 }
 
 variable "windows_demo_password" {
