@@ -12,7 +12,7 @@ data "http" "f5-cftv2-failover-existing-network" {
 }
 
 resource "aws_cloudformation_stack" "bigip_ha_across_az" {
-  name         = "networking-stack"
+  name         = "F5-bigip-deploy-ha-across-az"
   capabilities = ["CAPABILITY_IAM", "CAPABILITY_NAMED_IAM"]
   disable_rollback = "false"
   parameters = {
