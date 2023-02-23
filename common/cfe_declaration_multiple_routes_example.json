@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "class": "Cloud_Failover",
+  "environment": "aws",
+  "controls": {
+    "class": "Controls",
+    "logLevel": "silly"
+  },
+  "externalStorage": {
+    "encryption": {
+        "serverSide": {
+            "enabled": true,
+            "algorithm": "AES256"
+        }
+    },
+    "scopingTags": {
+        "f5_cloud_failover_label": "bigip_high_availability_solution"
+    }
+  },
+  "failoverAddresses": {
+    "enabled": true,
+    "scopingTags": {
+        "f5_cloud_failover_label": "bigip_high_availability_solution"
+    },
+    "requireScopingTags": false
+  },
+  "failoverRoutes": {
+    "enabled": true,
+    "routeGroupDefinitions":[
+        {
+            "scopingName": "",
+            "scopingAddressRanges": [
+                {
+                    "range": "192.168.50.0/24"
+                }
+            ],
+            "defaultNextHopAddresses": {
+                "discoveryType": "static",
+                "items": [
+                    "10.10.3.11",
+                    "10.10.4.11"
+                ]
+            }
+        },
+        {
+          "scopingName": "",
+          "scopingAddressRanges": [
+              {
+                  "range": "192.168.50.0/24"
+              }
+          ],
+          "defaultNextHopAddresses": {
+              "discoveryType": "static",
+              "items": [
+                  "10.10.3.11",
+                  "10.10.4.11"
+              ]
+          }
+      }
+    ]
+  }
+}
